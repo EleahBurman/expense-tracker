@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-const ExpenseList = ({items}) => {
+
+const ExpenseList = ({items, deleteItem}) => {
   return (
 
       <table className="table">
@@ -17,6 +18,11 @@ const ExpenseList = ({items}) => {
           <td>{item.description}</td>
           <td>${item.amount.toFixed(2)}</td>
           <td>{item.category}</td>
+          <td>
+            <button 
+              className="btn btn-outline-danger" 
+              onClick={()=>deleteItem(item.id)}
+            >Delete</button></td>
         </tr>
       )}
 
@@ -40,5 +46,6 @@ ExpenseList.propTypes = {
       category: PropTypes.string.isRequired,
     })
   ).isRequired,
+  deleteItem: PropTypes.func.isRequired,
 };
 export default ExpenseList
