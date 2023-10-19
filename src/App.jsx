@@ -42,7 +42,7 @@ function App() {
     <>
       <CategoryForm addCategory={addCategory} />
       <ExpenseForm addExpense={addExpense} categories={categories}/>
-      <ExpenseFilter filterItem = {filterItem}/>
+      <ExpenseFilter filterItem = {filterItem} categories={categories}/>
       <ExpenseList items={expenses} deleteItem={deleteItem} categories={categories} />
 
     </>
