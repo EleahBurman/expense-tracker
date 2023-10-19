@@ -14,6 +14,18 @@ function App() {
     {id:6, description:"Spotify subscription", amount: 40, category:"Entertainment"},
   ]);
 
+  const addExpense = (newExpense) => {
+    // Convert the amount to a number
+    newExpense.amount = parseFloat(newExpense.amount);
+    // Create a new expense with a unique ID
+    const expenseWithId = {
+      id: expenses.length + 1, // This assumes each ID is unique and incremental
+      ...newExpense,
+    };
+
+    // Update the expenses state by adding the new expense
+    setExpenses([...expenses, expenseWithId]);
+  };
   const deleteItem = (id) => {
     setExpenses(expenses.filter(expense => expense.id !== id))
   }
@@ -24,7 +36,7 @@ function App() {
 
   return(
     <>
-      <ExpenseForm />
+      <ExpenseForm addExpense = {addExpense}/>
       <ExpenseFilter filterItem = {filterItem}/>
       <ExpenseList items={expenses} deleteItem={deleteItem}/>
 
