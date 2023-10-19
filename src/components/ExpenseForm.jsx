@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {useForm} from "react-hook-form"
 
-const ExpenseForm = ({addExpense}) => {
+const ExpenseForm = ({addExpense, categories}) => {
 
 const { register, handleSubmit, reset, formState: {errors} } = useForm()
 
@@ -50,9 +50,11 @@ const { register, handleSubmit, reset, formState: {errors} } = useForm()
           {...register("category", {required:true})}
         >
           <option value=""></option>
-          <option value="Utilities">Utilities</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Groceries">Groceries</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
         {errors.category?.type == "required" && <p>This field is required.</p> }
       </div>
@@ -66,5 +68,6 @@ const { register, handleSubmit, reset, formState: {errors} } = useForm()
 
 ExpenseForm.propTypes = {
   addExpense: PropTypes.func,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 export default ExpenseForm;

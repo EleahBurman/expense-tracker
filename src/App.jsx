@@ -3,9 +3,12 @@ import { useState } from 'react';
 import ExpenseList from './components/ExpenseList'
 import ExpenseFilter from './components/ExpenseFilter';
 import ExpenseForm from './components/ExpenseForm';
+import CategoryForm from './components/CategoryForm';
+
 
 function App() {
   const [expenses, setExpenses]=useState([]);
+  const [categories, setCategories] = useState([]);
 
   const addExpense = (newExpense) => {
     // Convert the amount to a number
@@ -18,7 +21,15 @@ function App() {
 
     // Update the expenses state by adding the new expense
     setExpenses([...expenses, expenseWithId]);
+
+    // Add the new category to the Set of categories
+    setCategories(([...categories, newExpense.category]));
   };
+
+  const addCategory = (newCategory) => {
+    setCategories([...categories, newCategory]);
+  };
+
   const deleteItem = (id) => {
     setExpenses(expenses.filter(expense => expense.id !== id))
   }
@@ -29,9 +40,10 @@ function App() {
 
   return(
     <>
-      <ExpenseForm addExpense = {addExpense}/>
+      <CategoryForm addCategory={addCategory} />
+      <ExpenseForm addExpense={addExpense} categories={categories}/>
       <ExpenseFilter filterItem = {filterItem}/>
-      <ExpenseList items={expenses} deleteItem={deleteItem}/>
+      <ExpenseList items={expenses} deleteItem={deleteItem} categories={categories} />
 
     </>
   );
