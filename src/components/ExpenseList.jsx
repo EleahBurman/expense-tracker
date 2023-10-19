@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const ExpenseList = ({items, deleteItem}) => {
   return (
@@ -47,6 +46,6 @@ ExpenseList.propTypes = {
       category: PropTypes.string.isRequired,
     })
   ).isRequired,
-  deleteItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func,
 };
 export default ExpenseList

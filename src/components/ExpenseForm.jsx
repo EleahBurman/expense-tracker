@@ -1,9 +1,9 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import {useForm} from "react-hook-form"
 
 const ExpenseForm = ({addExpense}) => {
 
-const { register, handleSubmit, formState: {errors} } = useForm()
+const { register, handleSubmit, reset, formState: {errors} } = useForm()
 
 
   return (
@@ -11,6 +11,7 @@ const { register, handleSubmit, formState: {errors} } = useForm()
       className="mb-5" 
       onSubmit={handleSubmit((data) => {
         addExpense(data);
+        reset()
       })}>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
@@ -63,4 +64,7 @@ const { register, handleSubmit, formState: {errors} } = useForm()
   );
 }
 
+ExpenseForm.propTypes = {
+  addExpense: PropTypes.func,
+};
 export default ExpenseForm;

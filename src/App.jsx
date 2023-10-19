@@ -5,14 +5,7 @@ import ExpenseFilter from './components/ExpenseFilter';
 import ExpenseForm from './components/ExpenseForm';
 
 function App() {
-  const [expenses, setExpenses]=useState([
-    {id:1, description:"Packs of sugar", amount: 20, category:"Groceries"},
-    {id:2, description:"Box of pizza bagels", amount: 25, category:"Groceries"},
-    {id:3, description:"Carton of milk", amount: 10, category:"Groceries"},
-    {id:4, description:"Electricity bill", amount: 100,category:"Utilities"},
-    {id:5, description:"Packs of sugar", amount: 5,category:"Groceries"},
-    {id:6, description:"Spotify subscription", amount: 40, category:"Entertainment"},
-  ]);
+  const [expenses, setExpenses]=useState([]);
 
   const addExpense = (newExpense) => {
     // Convert the amount to a number
